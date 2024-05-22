@@ -1,0 +1,19 @@
+<h1 class="py-5">Potrebbero piacerti questi post</h1>
+
+<div *ngIf="randomPosts.length === 0" class="alert alert-info">
+  Caricamento in corso
+</div>
+
+<div class="row" *ngIf="randomPosts.length > 0">
+  <div *ngFor="let post of randomPosts" class="col-md-6 mb-5">
+    <div class="card h-100 d-flex flex-column mx-3 border-black bg-cards" >
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title"><span>ID:</span> {{ post.id }}</h5>
+        <h6 class="card-subtitle mb-2"><span>TITOLO :</span> {{ post.title }}</h6>
+        <p class="card-text flex-grow-1"><span>DESCRIZIONE :</span> {{ post.body }}</p>
+        <p class="card-text mt-auto"><span>TAGS :</span><small class="text-muted">{{ post.tags.join(', ') }}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
