@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { iPost } from '../../Models/post';
+import { PostsService } from '../../posts.service';
 
 @Component({
   selector: 'app-home',
@@ -8,28 +9,31 @@ import { iPost } from '../../Models/post';
 })
 export class HomeComponent implements OnInit {
 
-  apiUrl: string = '../../../assets/db.json';
-
   postArr: iPost[] = [];
   randomPosts: iPost[] = [];
 
-  ngOnInit() {
-    this.getPosts();
-  }
+  constructor(private postSvc: PostsService) { }
 
-  async getPosts(): Promise<void> {
-    let response = await fetch(this.apiUrl);
-    let data = await response.json();
-    this.postArr = data.posts;
-    console.log("Il mio oggetto è", this.postArr);
-    this.randomPosts = this.getRandomPosts(this.postArr, 4);
-    console.log("Il mio arrayrandom è",this.randomPosts);
+  ngOnInit() {
+    this.postSvc.getAll().then(posts => {
+      if (Array.isArray(posts)) {
+        this.postArr = posts;
+        console.log(this.postArr);
+        this.randomPosts = this.getRandomPosts(this.postArr, 4);
+      } else {
+        console.error('Expected an array of posts but got:', posts);
+      }
+    }).catch(error => {
+      console.error('Error fetching posts:', error);
+    });
   }
 
   getRandomPosts(arr: iPost[], num: number): iPost[] {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, num);
   }
+}
+
 
 
   /*appunti per me:
@@ -47,4 +51,4 @@ Questo causa un ordinamento casuale degli elementi perché ogni coppia di elemen
 Perché 0.5 - Math.random()?
 Il valore 0.5 è scelto come punto medio perché la distribuzione uniforme di Math.random() attorno a 0.5 dà una probabilità equa di
  ottenere un valore positivo o negativo, quindi mescola l'array in modo efficace. */
-}
+
