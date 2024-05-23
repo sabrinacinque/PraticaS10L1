@@ -13,17 +13,16 @@ export class PostsService {
     this.getFromJson();
   }
 
-  getFromJson(): Promise<void> {
-    return fetch(this.apiUrl)
-      .then(res => res.json())
-      .then(res => {
-        this.postArr = res.posts;
-      });
+  async getFromJson(): Promise<void> {
+    const res = await fetch(this.apiUrl);
+    const res_1 = await res.json();
+    this.postArr = res_1.posts;
   }
 
-  getAll(): Promise<iPost[]> {
+  async getAll(): Promise<iPost[]> {
     if (this.postArr.length === 0) {
-      return this.getFromJson().then(() => this.postArr);
+      await this.getFromJson();
+      return this.postArr;
     }
     return Promise.resolve(this.postArr);
   }
