@@ -17,7 +17,7 @@ export class PostsService {
     return fetch(this.apiUrl)
       .then(res => res.json())
       .then(res => {
-        this.postArr = res.posts; // Assumendo che il campo 'posts' contenga l'array di post
+        this.postArr = res.posts;
       });
   }
 

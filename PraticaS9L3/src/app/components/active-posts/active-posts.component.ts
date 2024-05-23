@@ -17,7 +17,7 @@ export class ActivePostsComponent implements OnInit {
   ngOnInit() {
     this.postSvc.getPostsTrueOrFalse(true).then(posts => {
       this.postArr = posts;
-      console.log(this.postArr); // Logga i post attivi
+      console.log(this.postArr); 
     }).catch(error => {
       console.error('Error fetching active posts:', error);
     });
