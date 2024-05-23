@@ -13,7 +13,7 @@
         <h6 class="card-subtitle mb-2"><span>TITOLO :</span> {{ post.title }}</h6>
         <p class="card-text flex-grow-1"><span>DESCRIZIONE :</span> {{ post.body }}</p>
         <p class="card-text mt-auto"><span>TAGS :</span><small>{{ post.tags.join(', ') }}</small></p>
-        <a class="btn btn-dark  " [routerLink]="['/post', post.id, { returnUrl: 'inactive-posts'}]">Vai al post</a>
+        <a class="btn btn-dark  " [routerLink]="['/post', post.id]">Vai al post</a>
       </div>
     </div>
   </div>

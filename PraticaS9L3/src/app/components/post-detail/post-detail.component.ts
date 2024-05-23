@@ -12,6 +12,8 @@ export class PostDetailComponent implements OnInit {
   currentPost!: iPost;
   returnUrl!: string;
   cardColor!: string;
+history: any;
+window: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +24,6 @@ export class PostDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(async paramMap => {
       const id = +paramMap.get('id')!;
-      this.returnUrl = paramMap.get('returnUrl') || '/';
 
       console.log('Params:', {
         id,
@@ -44,6 +45,6 @@ export class PostDetailComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate([this.returnUrl]);
+    history.back();
   }
 }
