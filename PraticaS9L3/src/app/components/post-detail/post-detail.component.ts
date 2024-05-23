@@ -17,7 +17,6 @@ window: any;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private postSvc: PostsService
   ) {}
 
@@ -26,8 +25,7 @@ window: any;
       const id = +paramMap.get('id')!;
 
       console.log('Params:', {
-        id,
-        returnUrl: this.returnUrl,
+        id
       });
 
       try {
