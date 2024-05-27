@@ -7,31 +7,16 @@ import { PostsService } from '../../posts.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   postArr: iPost[] = [];
-  randomPosts: iPost[] = [];
 
   constructor(private postSvc: PostsService) { }
 
-  ngOnInit() {
-    this.postSvc.getAll().then(posts => {
-      if (Array.isArray(posts)) {
-        this.postArr = posts;
-        console.log(this.postArr);
-        this.randomPosts = this.getRandomPosts(this.postArr, 4);
-      } else {
-        console.error('Expected an array of posts but got:', posts);
-      }
-    }).catch(error => {
-      console.error('Error fetching posts:', error);
-    });
+  ngOnInit(){
+    this.postArr = this.postSvc.posts;
   }
 
-  getRandomPosts(arr: iPost[], num: number): iPost[] {
-    const shuffled = [...arr].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, num);
-  }
 }
 
 

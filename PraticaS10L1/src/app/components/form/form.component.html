@@ -1,0 +1,11 @@
+<button class="btn btn-primary" (click)="toggleForm()">
+  {{ formVisible ? 'Hide form' : 'Show form' }}
+</button>
+
+<div *ngIf="formVisible">
+  <form>
+    <input type="text" class="form-control mb-2" name="posttitolo" placeholder="title" [(ngModel)]="post.title">
+    <input type="text" class="form-control mb-2" name="postbody" placeholder="body" [(ngModel)]="post.body">
+    <input type="text" class="form-control mb-2" name="postTags" placeholder="tags" [(ngModel)]="post.tags">
+  </form>
+</div>

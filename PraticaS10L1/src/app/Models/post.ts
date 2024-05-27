@@ -1,10 +1,3 @@
-export interface iMain {
-  posts: iPost[]
-  total: number
-  skip: number
-  limit: number
-}
-
 export interface iPost {
   id: number
   title: string
