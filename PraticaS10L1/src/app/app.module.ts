@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { Page404Component } from './components/page404/page404.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { FormComponent } from './components/form/form.component';
+import { RandomBackGroundDirective } from './direttive/random-back-ground.directive';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,13 @@ import { FormComponent } from './components/form/form.component';
     HomeComponent,
     Page404Component,
     SinglePostComponent,
-    FormComponent
+    FormComponent,
+    RandomBackGroundDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule // Aggiungi FormsModule qui
+    FormsModule ,
   ],
   providers: [],
   bootstrap: [AppComponent]

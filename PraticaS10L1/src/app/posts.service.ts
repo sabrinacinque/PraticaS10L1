@@ -6,7 +6,7 @@ import { iPost } from './Models/post';
 })
 export class PostsService {
 
-  posts:iPost[]= [
+  posts:iPost[] = [
     {
       "id": 1,
       "title": "His mother had always taught him",
@@ -249,5 +249,29 @@ export class PostsService {
     }
   ]
 
+  constructor() {}
+
+
+  getPostByStatus(active:boolean){
+    return this.posts.filter(post => post.active === active)
+  }
+
+  getUniqueTags(){
+
+    return this.posts.reduce((tags:string[], post) => {
+
+        post.tags.forEach(t => {
+          if(!tags.includes(t)){
+              tags.push(t)
+          }
+        });
+
+      return tags
+    },[])
+  }
+
+  getPostsByTag(tag:string){
+    return this.posts.filter(post => post.tags.includes(tag))
+  }
 
 }

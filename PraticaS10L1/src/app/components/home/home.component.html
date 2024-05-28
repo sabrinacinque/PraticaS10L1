@@ -1,11 +1,19 @@
 
 
-<div *ngIf="postArr.length === 0" class="alert alert-info">
+<div *ngIf="filteredPost.length === 0" class="alert alert-info">
   Caricamento in corso
 </div>
 
-<div class="row my-5" *ngIf="postArr.length > 0">
-  <div *ngFor="let post of postArr" class="col-md-6 mb-5">
+<div class="row alert alert-success">
+
+  <button (click)="filterByTag($event,tag)" *ngFor="let tag of allTags" class="btn btn-info">{{tag}}</button>
+  <button (click)="resetFilters()" class="btn btn-warning">Annulla filtri</button>
+
+
+</div>
+
+<div class="row my-5" *ngIf="filteredPost.length > 0">
+  <div *ngFor="let post of filteredPost" class="col-md-6 mb-5">
     <app-single-post [post]="post"></app-single-post>
   </div>
 </div>
